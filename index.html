@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>To Sum Up — Reader</title>
+<meta name="theme-color" content="#0f172a">
+<style>
+  :root{
+    --bg:#0b1020; --card:#0f172a; --ink:#e5e7eb; --muted:#94a3b8; --brand:#22d3ee;
+    --max: 880px; --radius: 16px; --pad: clamp(16px,2.5vw,28px);
+    --fs: clamp(18px, 1.3vw + 12px, 21px); --lh: 1.7;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    background: radial-gradient(1200px 800px at 10% -10%, #111827 0%, var(--bg) 30%, #060913 100%);
+    color: var(--ink); line-height: var(--lh);
+  }
+  .wrap{max-width:var(--max); margin:0 auto; padding:calc(var(--pad) + 56px) var(--pad) var(--pad);}
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+    border: 1px solid rgba(148,163,184,.25);
+    border-radius: var(--radius); padding: clamp(18px,2vw,28px);
+    box-shadow: 0 20px 60px rgba(2,6,23,.6), inset 0 1px 0 rgba(255,255,255,.03);
+    backdrop-filter: blur(4px);
+  }
+  h1{
+    margin: 0 0 .4em 0; font-size: clamp(28px,2.2vw + 16px,36px); letter-spacing:.2px;
+    font-variant: small-caps; color:#f8fafc;
+  }
+  p{font-size: var(--fs); margin:.85em 0}
+  em{font-style: italic}
+  .muted{color:var(--muted); font-size: .92em}
+  .toolbar{
+    position: sticky; top:0; z-index: 5; backdrop-filter: blur(8px);
+    background: rgba(2,6,23,.8); border-bottom:1px solid rgba(148,163,184,.2);
+  }
+  .bar{
+    display:flex; align-items:center; gap:8px; max-width:var(--max);
+    margin:0 auto; padding:8px var(--pad);
+  }
+  .bar button, .bar input[type="search"]{
+    background:#0b1220; color:#e5e7eb; border:1px solid rgba(148,163,184,.35);
+    padding:8px 12px; border-radius:12px; cursor:pointer; font-size:14px;
+  }
+  .bar button:hover{border-color:#22d3ee}
+  .bar .grow{flex:1}
+  .badge{border:1px solid rgba(148,163,184,.35); padding:4px 10px; border-radius:999px}
+  .found{background: #fde68a; color:#111827; padding:0 .25em; border-radius:4px}
+  .footer{max-width:var(--max); margin: 12px auto 40px; color:var(--muted); font-size:13px; padding: 0 var(--pad)}
+  .sr{position:absolute; left:-9999px}
+  .light{
+    --bg:#f5f7fb; --card:#ffffff; --ink:#0f172a; --muted:#475569;
+    background: linear-gradient(180deg, #f0f4ff 0%, #f8fafc 30%, #ffffff 100%);
+  }
+  .light .card{background:#fff; border-color:#e2e8f0; box-shadow: 0 10px 30px rgba(2,6,23,.08)}
+  .light .toolbar{background:rgba(255,255,255,.9); border-color:#e2e8f0}
+  .light .bar button, .light .bar input[type="search"]{background:#fff; color:#0f172a; border-color:#cbd5e1}
+  .pill{display:inline-flex; align-items:center; gap:8px; padding:4px 10px; border-radius:999px; border:1px dashed rgba(148,163,184,.4)}
+</style>
+</head>
+<body>
+  <!-- Top toolbar -->
+  <div class="toolbar" role="region" aria-label="Reader toolbar">
+    <div class="bar">
+      <button id="toggleTheme" title="Toggle light/dark">🌗 Theme</button>
+      <button id="smaller" title="Decrease text size">A−</button>
+      <button id="bigger" title="Increase text size">A+</button>
+      <input id="query" class="grow" type="search" placeholder="Search in text…" aria-label="Search in text" />
+      <button id="findBtn" title="Find">Find</button>
+      <button id="clearBtn" title="Clear search">Clear</button>
+      <button id="shareBtn" title="Share">↗︎ Share</button>
+      <button id="printBtn" title="Print / Save PDF">🖨︎ Print</button>
+      <button id="downloadBtn" title="Download as .txt">⬇︎ TXT</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <article class="card" id="article" aria-label="Book excerpt">
+      <header>
+        <h1>To Sum Up</h1>
+        <div class="muted pill">Reader-friendly web version of the page you provided</div>
+      </header>
+
+      <p><em>Investment is most intelligent when it is most businesslike.</em> It is amazing to see how many capable businessmen try to operate in Wall Street with complete disregard of all the sound principles through which they have gained success in their own undertakings. Yet every corporate security may best be viewed, in the first instance, as an ownership interest in, or a claim against, a specific business enterprise. And if a person sets out to make profits from security purchases and sales, he is embarking on a business venture of his own, which must be run in accordance with accepted business principles if it is to have a chance of success.</p>
+
+      <p>The first and most obvious of these principles is, “Know what you are doing—know your business.” For the investor this means: Do not try to make “business profits” out of securities—that is, returns in excess of normal interest and dividend income—unless you know as much about security values as you would need to know about the value of merchandise that you proposed to manufacture or deal in.</p>
+
+      <p>A second business principle: “Do not let anyone else run your business, unless (1) you can supervise his performance with adequate care and comprehension or (2) you have unusually strong reasons for placing implicit confidence in his integrity and ability.” For the investor this rule should determine the conditions under which he will permit someone else to decide what is done with his money.</p>
+
+      <p>A third business principle: “Do not enter upon an operation—that is, manufacturing or trading in an item—unless a reliable calculation shows that it has a fair chance to yield a reasonable profit.” In particular, keep away from ventures in which you have little to gain and much to lose.” For the enterprising investor this means that his operations for profit should be based not on optimism but on arithmetic. For every investor it means that when he limits his return to a small figure—as formerly, at least, in a conventional bond or preferred stock—he must demand convincing evidence that he is not risking a substantial part of his principal.</p>
+    </article>
+
+    <p class="footer">
+      <span class="badge">Tip</span> Use the search box to highlight words, toggle theme, and adjust font size for comfortable reading.
+    </p>
+  </div>
+
+<script>
+(() => {
+  // Theme toggle
+  const root = document.documentElement;
+  const themeBtn = document.getElementById('toggleTheme');
+  const saved = localStorage.getItem('theme') || 'dark';
+  if(saved==='light'){ document.body.classList.add('light'); }
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light');
+    localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+  });
+
+  // Font size controls
+  let base = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--fs')) || 19;
+  const setFS = v => document.documentElement.style.setProperty('--fs', v + 'px');
+  document.getElementById('smaller').onclick = () => { base = Math.max(14, base-1); setFS(base); };
+  document.getElementById('bigger').onclick  = () => { base = Math.min(28, base+1); setFS(base); };
+
+  // In-page search & highlight
+  const article = document.getElementById('article');
+  const q = document.getElementById('query');
+  const findBtn = document.getElementById('findBtn');
+  const clearBtn = document.getElementById('clearBtn');
+
+  const clearMarks = () => {
+    article.querySelectorAll('.found').forEach(el=>{
+      const parent = el.parentNode;
+      parent.replaceChild(document.createTextNode(el.textContent), el);
+      parent.normalize();
+    });
+  };
+  const highlight = (needle) => {
+    if(!needle) return;
+    const walk = document.createTreeWalker(article, NodeFilter.SHOW_TEXT, null);
+    const re = new RegExp(needle.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi');
+    const nodes = [];
+    while(walk.nextNode()) nodes.push(walk.currentNode);
+    nodes.forEach(node=>{
+      if(!node.nodeValue.trim()) return;
+      if(re.test(node.nodeValue)){
+        const frag = document.createDocumentFragment();
+        let last = 0;
+        node.nodeValue.replace(re, (m, idx) => {
+          frag.appendChild(document.createTextNode(node.nodeValue.slice(last, idx)));
+          const mark = document.createElement('span');
+          mark.className='found';
+          mark.textContent = m;
+          frag.appendChild(mark);
+          last = idx + m.length;
+        });
+        frag.appendChild(document.createTextNode(node.nodeValue.slice(last)));
+        node.parentNode.replaceChild(frag, node);
+      }
+    });
+  };
+
+  findBtn.onclick = () => { clearMarks(); highlight(q.value.trim()); };
+  clearBtn.onclick = () => { q.value=''; clearMarks(); };
+
+  // Share
+  document.getElementById('shareBtn').onclick = async () => {
+    const title = document.title;
+    const text = 'Great excerpt formatted as a clean reader.';
+    try{
+      if (navigator.share) await navigator.share({title, text, url: location.href});
+      else alert('Use your browser’s Share or copy the URL.');
+    }catch(e){}
+  };
+
+  // Print
+  document.getElementById('printBtn').onclick = () => window.print();
+
+  // Download as .txt
+  document.getElementById('downloadBtn').onclick = () => {
+    const txt = [...article.querySelectorAll('h1,p')].map(el=>el.innerText).join('\n\n');
+    const blob = new Blob([txt], {type:'text/plain;charset=utf-8'});
+    const a = Object.assign(document.createElement('a'), {href: URL.createObjectURL(blob), download: 'to-sum-up.txt'});
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href), 2500);
+  };
+})();
+</script>
+</body>
+</html>
